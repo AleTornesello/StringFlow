@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EditorPageComponent } from './components/dashboard-page/editor-page.component';
+import { EditorPageComponent } from './components/editor-page/editor-page.component';
 import { EditorRoutingModule } from './editor-routing.module';
 
 import { TranslocoModule } from '@ngneat/transloco';
@@ -10,10 +10,14 @@ import { ListboxModule } from 'primeng/listbox';
 import {ButtonModule} from "primeng/button";
 import { PaginatorModule } from "primeng/paginator";
 import { ReactiveFormsModule } from "@angular/forms";
+import { EditorComponent } from './components/editor/editor.component';
+import { NodesSidebarComponent } from './components/nodes-sidebar/nodes-sidebar.component';
 
 @NgModule({
   declarations: [
     EditorPageComponent,
+    EditorComponent,
+    NodesSidebarComponent,
   ],
     imports: [
         CommonModule,
