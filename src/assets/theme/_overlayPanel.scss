@@ -1,0 +1,10 @@
+.p-overlaypanel {
+  border-radius: var(--border-radius, 16px);
+  border: 1px solid var(--neutral-grey-03, #f9feff);
+  background: var(--neutral-white, #ffffff);
+  box-shadow: 0 28px 12px -16px rgba(0, 0, 0, 0.05);
+}
+
+.p-overlaypanel-content {
+  padding: 0 !important;
+}

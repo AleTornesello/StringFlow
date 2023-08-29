@@ -1,0 +1,37 @@
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [resizable]="false"
+  [styleClass]="getStyleClass()"
+  [baseZIndex]="9999"
+  [closable]="false"
+  [breakpoints]="{ '960px': '75vw', '500px': '95vw' }"
+  [style]="getSize()"
+  [draggable]="false"
+  id="simpleDialog"
+>
+  <ng-template pTemplate="header">
+    <div class="flex justify-content-between align-items-center w-full">
+      <div class="p-2 title" [style]="headerStyle">
+        {{ header }}
+      </div>
+      <div class="flex mr-3">
+        <p-button
+          *ngIf="!hideCloseButton"
+          styleClass="p-button-text p-button-secondary p-button-lg p-0"
+          (onClick)="close()"
+        >
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </p-button>
+      </div>
+    </div>
+  </ng-template>
+  <div class="body_regular">
+    <ng-content class=""></ng-content>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="mt-2">
+      <ng-content select="[buttons]"></ng-content>
+    </div>
+  </ng-template>
+</p-dialog>

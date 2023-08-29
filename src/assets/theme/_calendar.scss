@@ -1,0 +1,18 @@
+.p-calendar {
+  width: 100%;
+  border-radius: var(--border-radius-small, 8px);
+}
+
+.p-calendar button.p-datepicker-trigger {
+  background-color: var(--secondary-500, #206db5);
+  border-color: var(--secondary-500, #206db5);
+  border-top-right-radius: var(--border-radius-small, 8px);
+  border-bottom-right-radius: var(--border-radius-small, 8px);
+}
+
+.p-calendar button.p-datepicker-trigger:hover {
+  background-color: var(--secondary-800, #13509d);
+  border-color: var(--secondary-800, #13509d);
+  border-top-right-radius: var(--border-radius-small, 8px);
+  border-bottom-right-radius: var(--border-radius-small, 8px);
+}

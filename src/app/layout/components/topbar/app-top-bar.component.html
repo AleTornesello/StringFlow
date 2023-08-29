@@ -1,0 +1,48 @@
+<p-toolbar styleClass="top-toolbar">
+  <div class="flex align-items-center">
+    <p-button
+      (click)="toggleSideBar()"
+      icon="true"
+      styleClass="p-button-rounded p-button-text menu-btn"
+    >
+      <fa-icon [icon]="faBars" class="text-neutral-black"></fa-icon>
+    </p-button>
+    <a class="mx-4" routerLink="/">
+      <img
+        alt="logo"
+        src="./assets/images/logo.svg"
+        height="26"
+        aria-label="StringFlow"
+      />
+    </a>
+  </div>
+</p-toolbar>
+
+<p-sidebar [(visible)]="sidebarVisible" styleClass="w-25rem">
+  <ng-template pTemplate="header">
+    <img
+      src="./assets/images/logo.svg"
+      height="26"
+      alt="logo"
+      id="logo"
+      role="img"
+      aria-label="StringFlow"
+    />
+  </ng-template>
+  <ng-template pTemplate="content" styleClass="p-0">
+    <p-tree class="w-full" [value]="menuItems" styleClass="side-menu">
+      <ng-template let-node pTemplate="url">
+        <div class="cursor-pointer" (click)="redirectTo(node.data?.url)">
+          <fa-icon [icon]="node.data?.icon" class="menu-icon"></fa-icon>
+          <span class="ml-3 button_small">
+            <b>{{ node.label }}</b>
+          </span>
+        </div>
+      </ng-template>
+      <ng-template let-node pTemplate="default">
+        <fa-icon [icon]="node.data?.icon" class="menu-icon"></fa-icon>
+        <b class="ml-3">{{ node.label }}</b>
+      </ng-template>
+    </p-tree>
+  </ng-template>
+</p-sidebar>

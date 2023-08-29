@@ -1,0 +1,25 @@
+<app-simple-dialog #dialog>
+  <div class="text-center">
+    <h1 class="mb-4">{{ "common.exitWithoutSaving" | transloco }}</h1>
+    <p>{{ changesContext | transloco }}</p>
+  </div>
+
+  <div buttons>
+    <div class="flex gap-4 justify-content-center">
+      <p-button
+        [label]="'common.goBack' | transloco"
+        styleClass="p-button-text p-button-secondary"
+        [ariaLabel]="'common.goBack' | transloco"
+        (onClick)="close()"
+      >
+      </p-button>
+      <p-button
+        (onClick)="onExitWithUnsaved()"
+        [label]="'common.leaveWithUnsaved' | transloco"
+        styleClass="p-button-danger"
+        [ariaLabel]="'common.leaveWithUnsaved' | transloco"
+      >
+      </p-button>
+    </div>
+  </div>
+</app-simple-dialog>

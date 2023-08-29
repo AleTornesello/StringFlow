@@ -1,0 +1,32 @@
+.p-datatable .p-datatable-header {
+  border: none;
+  background-color: var(--neutral-white);
+  font-weight: 500;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  background-color: var(--neutral-white);
+  color: var(--neutral-black, #2c3d5e);
+  text-transform: capitalize;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 118%;
+  border: 0;
+}
+
+.p-datatable .p-datatable-tbody > tr.highlighted {
+  background: var(--neutral-grey-03, #f9feff);
+}
+
+.p-datatable .p-sortable-column .p-sortable-column-icon {
+  color: var(--neutral-grey-01);
+}
+
+table.p-datatable-table {
+  border-top: 1px solid #d9d9d9;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
+  background: var(--highlight-bg);
+}

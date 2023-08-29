@@ -1,0 +1,31 @@
+#simpleDialog::ng-deep {
+  .p-dialog-header {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 0.75rem 0;
+    fa-icon {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      height: 2rem;
+      width: 2rem;
+    }
+    .title {
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0;
+    }
+  }
+
+  hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-top: 1px solid #ddd;
+    opacity: 0.5;
+  }
+
+  span.p-button-icon {
+    font-size: 1.1rem;
+  }
+}

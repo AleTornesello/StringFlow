@@ -1,0 +1,56 @@
+.card {
+    background: var(--surface-card);
+    border-radius: var(--border-radius);
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.text-secondary {
+  color: var(--secondary-500, #206db5);
+}
+
+.text-neutral-black {
+  color: var(--neutral-black, #2c3d5e);
+}
+
+label.font-bold {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 118%; /* 16.52px */
+}
+
+.label_regular {
+  color: var(--neutral-black, #2c3d5e);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.p-toast {
+  &.p-toast-top-right,
+  &.p-toast-top-left,
+  &.p-toast-top-center {
+    top: 200px;
+  }
+}

@@ -1,0 +1,66 @@
+.right-side-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+::ng-deep {
+  .top-toolbar {
+    padding: 0.5rem 1.25rem;
+  }
+  .menu-btn {
+    &.p-button.p-button-outlined {
+      color: var(--neutral-grey-02, #b5ccd1)!important;
+    }
+    .pi.pi-bars {
+      color: var(--neutral-black);
+    }
+  }
+  .p-tree.side-menu {
+    border: none;
+    padding: 0;
+    .p-tree-wrapper {
+      .p-tree-container {
+        .p-treenode {
+          padding: 1em;
+          border-bottom: 1px solid var(--surface-100);
+
+          .p-treenode {
+            padding: 0 1em;
+            border-bottom: none;
+          }
+
+          button.p-ripple.p-element.p-tree-toggler.p-link {
+            position: absolute;
+            right: 1em;
+          }
+          .p-treenode-icon::before {
+            color: var(--link-color);
+          }
+          .p-treenode-content {
+            box-shadow: none!important;
+          }
+          .p-tree-toggler {
+            box-shadow: none!important;
+            background: transparent!important;
+            color: var(--link-color)!important;
+          }
+        }
+      }
+    }
+  }
+  .button_small {
+    color: var(--neutral-black, #2c3d5e);
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  fa-icon.menu-icon {
+    color: var(--secondary-500, #206db5);
+  }
+
+  .p-sidebar .p-sidebar-content {
+    padding-left: 0.65rem!important;
+    padding-right: 0.65rem!important;
+  }
+}

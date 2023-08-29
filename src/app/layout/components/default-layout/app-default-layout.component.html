@@ -1,0 +1,11 @@
+<div class="empty-layout-wrapper" [ngClass]="containerClass">
+  <app-overlay-loader></app-overlay-loader>
+  <p-toast></p-toast>
+  <app-top-bar></app-top-bar>
+  <div class="default-layout-main-container">
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+<!--    <app-footer></app-footer>-->
+  </div>
+</div>

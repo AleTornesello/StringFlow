@@ -1,0 +1,97 @@
+.p-button {
+  color: var(--primary-color-text);
+  background: var(--primary-500, #038600);
+  border: 1px solid var(--primary-500, #038600);
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+    box-shadow 0.2s;
+  border-radius: var(--border-radius-small, 8px);
+}
+
+.p-button.p-disabled {
+  background: var(--neutral-grey-02, #b5ccd1) !important;
+  border: 1px solid var(--neutral-grey-02, #b5ccd1) !important;
+  color: var(--neutral-watermark, #3b4446) !important;
+  opacity: 1;
+}
+
+.p-button:enabled:hover {
+  background: var(--primary-800, #026900);
+  border: 1px solid var(--primary-800, #026900);
+}
+
+.p-button.p-button-secondary {
+  color: var(--secondary-color-text, #ffffff);
+  background: var(--secondary-500, #206db5);
+  border: 1px solid var(--secondary-500, #206db5);
+}
+
+.p-button.p-button-primary-accent {
+  color: var(--secondary-color-text, #ffffff);
+  background: var(--primary-accent, #7E49D4);
+  border: 1px solid var(--primary-accent, #7E49D4);
+}
+.p-button.p-button-primary-accent:enabled:hover {
+  background-color: #673cb2;
+}
+
+.p-button.p-button-link {
+  background: transparent;
+  color: var(--primary-500, #038600);
+  border-color: transparent;
+  padding: 0.25rem 0.5rem;
+}
+
+.p-button.p-button-link.p-button-secondary {
+  color: var(--secondary-500, #206db5);
+}
+
+.p-button.p-button-text {
+  background: transparent;
+  color: var(--secondary-500, #206db5);
+  border-color: transparent;
+}
+
+.p-button.p-button-text:hover {
+  color: var(--secondary-500, #206db5);
+}
+
+.p-button.p-button-text.p-button-secondary {
+  background: transparent;
+  color: var(--secondary-500, #206db5);
+  border-color: transparent;
+}
+
+.p-button.p-button-text.p-button-secondary:enabled:hover {
+  color: var(--secondary-800, #038600);
+  background-color: var(--secondary-50, #e4edf6);
+}
+
+.p-button.p-button-text {
+  &.red {
+    background: var(--neutral-transparent, rgba(0, 0, 0, 0));
+    color: var(--system-danger-dark, #d10000);
+    &:hover {
+      background: var(--system-danger-light, #f5fafc);
+      color: var(--system-danger-dark, #d10000);
+    }
+  }
+}
+
+button {
+  cursor: pointer;
+  &.text-icon-button {
+    background: transparent;
+    padding: 4px 8px;
+    border: none;
+    span {
+      padding: 8px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    &:hover {
+      background: var(--secondary-500, #206db5);
+    }
+  }
+}
