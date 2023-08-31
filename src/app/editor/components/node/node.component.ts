@@ -1,0 +1,100 @@
+import {ChangeDetectorRef, Component, HostBinding, Input, OnChanges} from '@angular/core';
+import {ClassicPreset} from "rete";
+import {KeyValue} from "@angular/common";
+import {PortType, TypedInput, TypedOutput} from "../../../shared/utils/editor/ports";
+
+interface PortInfo {
+  id: string;
+  label: string;
+  socket: ClassicPreset.Socket;
+  type?: string;
+}
+
+@Component({
+  selector: 'app-node',
+  templateUrl: './node.component.html',
+  styleUrls: ['./node.component.scss']
+})
+export class NodeComponent implements OnChanges {
+  @Input() data!: ClassicPreset.Node;
+  @Input() emit!: (data: any) => void;
+  @Input() rendered!: () => void;
+
+  seed = 0;
+
+  @HostBinding("class.selected") get selected() {
+    return this.data.selected;
+  }
+
+  constructor(private cdr: ChangeDetectorRef) {
+    this.cdr.detach();
+  }
+
+  ngOnChanges(): void {
+    this.cdr.detectChanges();
+    requestAnimationFrame(() => this.rendered());
+    this.seed++; // force render sockets
+  }
+
+  public get inputs(): PortInfo[] {
+    const inputs: PortInfo[] = [];
+
+    if(this.data?.inputs) {
+      Object.keys(this.data!.inputs).forEach((key) => {
+        if (this.data!.inputs[key]) {
+          inputs.push({
+            id: this.data!.inputs[key]!.id,
+            label: this.data!.inputs[key]!.label ?? '',
+            socket: this.data!.inputs[key]!.socket,
+            type: this.data!.inputs[key] instanceof TypedOutput
+              ? this._portTypeToString((this.data!.inputs[key]! as TypedInput<any>).type)
+              : undefined
+          });
+        }
+      });
+    }
+
+    return inputs;
+  }
+
+  public get outputs(): PortInfo[] {
+    const outputs: PortInfo[] = [];
+
+    if(this.data?.outputs) {
+      Object.keys(this.data!.outputs).forEach((key) => {
+        if (this.data!.outputs[key]) {
+          outputs.push({
+            id: this.data!.outputs[key]!.id,
+            label: this.data!.outputs[key]!.label ?? '',
+            socket: this.data!.outputs[key]!.socket,
+            type: this.data!.outputs[key] instanceof TypedOutput
+              ? this._portTypeToString((this.data!.outputs[key]! as TypedOutput<any>).type)
+              : undefined
+          });
+        }
+      });
+    }
+
+    return outputs;
+  }
+
+  private _portTypeToString(type: PortType): string {
+    switch (type) {
+      case PortType.ANY:
+        return 'Any';
+      case PortType.STRING:
+        return 'Text';
+      case PortType.NUMBER:
+        return 'Number';
+      case PortType.BOOLEAN:
+        return 'Boolean';
+    }
+  }
+
+  // sortByIndex(a: KeyValue<string, ClassicPreset.Output<ClassicPreset.Socket> | undefined>, b: KeyValue<string, ClassicPreset.Output<ClassicPreset.Socket> | undefined>): number {
+  //   const ai = a.value!.index || 0;
+  //   const bi = b.value!.index || 0;
+  //
+  //   return ai - bi;
+  // }
+}

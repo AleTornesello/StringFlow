@@ -1,0 +1,16 @@
+:host {
+  display: inline-block;
+  cursor: pointer;
+  border: 3px solid var(--neutral-grey-02, #b5ccd1);
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  background: #fff;
+  z-index: 2;
+  border-radius: var(--border-radius-small);
+  box-sizing: border-box;
+
+  &:hover {
+    background: #ddd;
+  }
+}

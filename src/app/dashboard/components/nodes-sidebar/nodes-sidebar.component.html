@@ -1,6 +1,16 @@
 
   <div class="nodes-sidebar-container" [ngClass]="{'closed': !open}">
-    <div class="nodes-sidebar">aaa</div>
+    <div class="nodes-sidebar">
+      <p-accordion>
+        <p-accordionTab *ngFor="let group of controlsGroups" [header]="group.name">
+          <div class="flex flex-column">
+            <div class="node" *ngFor="let generator of group.nodes" (click)="onSelectNode(generator)">
+              {{ generator.label }}
+            </div>
+          </div>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
     <div class="sidebar-action" (click)="onSidebarActionClick()">
       <fa-icon [icon]="actionIcon" class="text-neutral-black"></fa-icon>
     </div>

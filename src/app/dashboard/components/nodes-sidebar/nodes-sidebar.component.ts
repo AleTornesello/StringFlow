@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, DestroyRef, OnInit} from '@angular/core';
 import {IconDefinition} from "@fortawesome/fontawesome-svg-core";
-import { faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import {faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import {NodesGroup, NodeService} from "../../../shared/services/node.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {EditorService} from "../../../shared/services/editor.service";
+import {NodeGenerator} from "../../../shared/models/node/node-generation";
 
 @Component({
   selector: 'app-nodes-sidebar',
@@ -12,12 +16,24 @@ export class NodesSidebarComponent {
   public faChevronRight: IconDefinition;
   public faChevronLeft: IconDefinition;
   public open: boolean;
+  public controlsGroups: NodesGroup[]
 
-  constructor() {
+  constructor(
+    private _nodeService: NodeService,
+    private _editorService: EditorService
+  ) {
     this.faChevronRight = faChevronRight;
     this.faChevronLeft = faChevronLeft;
     this.open = true;
+    this.controlsGroups = [];
+
+    this._nodeService.$afterInit
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => {
+        this.controlsGroups = this._nodeService.nodesGroups;
+      });
   }
+
 
   public get actionIcon() {
     return this.open ? this.faChevronLeft : this.faChevronRight;
@@ -25,5 +41,9 @@ export class NodesSidebarComponent {
 
   public onSidebarActionClick() {
     this.open = !this.open;
+  }
+
+  public onSelectNode(generator: NodeGenerator) {
+    this._editorService.addNode(generator.generate(this._editorService.socket));
   }
 }

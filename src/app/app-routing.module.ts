@@ -12,7 +12,7 @@ const routes: Routes = [
       {
         path: '', //RootRoutes.DASHBOARD,
         loadChildren: () =>
-          import('./dashboard/editor.module').then((m) => m.EditorModule),
+          import('./dashboard/home.module').then((m) => m.HomeModule),
       }
     ],
   },

@@ -22,6 +22,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@ngneat/transloco": "^5.0.7",
+    "@types/uuid": "^9.0.3",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^16.2.0",
@@ -32,6 +33,7 @@
     "rete-render-utils": "^2.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
