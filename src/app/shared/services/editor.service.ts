@@ -3,11 +3,15 @@ import {ClassicPreset, GetSchemes, NodeEditor} from "rete";
 import {AreaExtensions, AreaPlugin} from "rete-area-plugin";
 import {ConnectionPlugin, Presets as ConnectionPresets} from "rete-connection-plugin";
 import {addCustomBackground} from "../utils/editor/custom-background";
-import {AngularArea2D, AngularPlugin, Presets} from "rete-angular-plugin/16";
+import {AngularArea2D, AngularPlugin, ControlComponent, Presets} from "rete-angular-plugin/16";
 import {Subject} from "rxjs";
 import {NodeComponent} from "../../editor/components/node/node.component";
 import {PortType, TypedOutput} from "../utils/editor/ports";
 import {SocketComponent} from "../../editor/components/socket/socket.component";
+import {
+  LabeledInputComponent,
+  LabeledInputControl
+} from "../../editor/components/controls/labeled-input/labeled-input.component";
 
 type Schemes = GetSchemes<
   ClassicPreset.Node,
@@ -57,6 +61,13 @@ export class EditorService {
           },
           socket() {
             return SocketComponent;
+          },
+          control(data) {
+            if(data.payload instanceof LabeledInputControl) {
+              return LabeledInputComponent
+            }
+
+            return ControlComponent
           }
         }
       })
@@ -80,7 +91,11 @@ export class EditorService {
     const a = new ClassicPreset.Node("A");
     a.addControl(
       "a",
-      new ClassicPreset.InputControl("text", {initial: "hello"})
+      new LabeledInputControl("text", "Input", {initial: "hello"})
+    );
+    a.addControl(
+      "b",
+      new LabeledInputControl("text", "Input", {initial: "hello"})
     );
     a.addOutput("a", new TypedOutput(this._socket, PortType.STRING, "Output"));
     await this._editor.addNode(a);

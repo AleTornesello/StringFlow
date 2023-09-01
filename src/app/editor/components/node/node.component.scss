@@ -7,7 +7,7 @@
   box-sizing: border-box;
   width: 300px;
   height: auto;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
   position: relative;
   user-select: none;
 
@@ -64,13 +64,21 @@
     font-style: italic;
   }
 
+  .input-title {
+    text-align: left;
+  }
+
+  .output-title {
+    text-align: right;
+  }
+
   .output-type {
     font-size: 12px;
   }
 
   .input-control {
     z-index: 1;
-    width: calc(100% - #{16px + 2*6px});
+    padding: 0 8px;
     vertical-align: middle;
     display: inline-block;
   }

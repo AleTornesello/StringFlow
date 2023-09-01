@@ -1,0 +1,19 @@
+:host {
+  .labeled-input-text {
+    color: var(--text-color);
+    background: #ffffff;
+    border: 1px solid var(--neutral-grey-02, #b5ccd1);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: var(--border-radius-small);
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    width: 100%;
+
+    &__label {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+}

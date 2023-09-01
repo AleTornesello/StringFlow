@@ -1,13 +1,18 @@
 import {ChangeDetectorRef, Component, HostBinding, Input, OnChanges} from '@angular/core';
 import {ClassicPreset} from "rete";
-import {KeyValue} from "@angular/common";
 import {PortType, TypedInput, TypedOutput} from "../../../shared/utils/editor/ports";
+import {LabeledInputControl} from "../controls/labeled-input/labeled-input.component";
 
 interface PortInfo {
   id: string;
   label: string;
   socket: ClassicPreset.Socket;
   type?: string;
+}
+
+interface ControlInfo {
+  label: string;
+  control: ClassicPreset.Control
 }
 
 @Component({
@@ -76,6 +81,25 @@ export class NodeComponent implements OnChanges {
     }
 
     return outputs;
+  }
+
+  public get controls(): ControlInfo[] {
+    const controls: ControlInfo[] = [];
+
+    if(this.data?.controls) {
+      Object.keys(this.data!.controls).forEach((key) => {
+        if (this.data!.controls[key]) {
+          controls.push({
+            label: this.data!.controls[key] instanceof LabeledInputControl
+              ? (this.data!.controls[key]! as LabeledInputControl<any, any>).label
+              : '',
+            control: this.data!.controls[key]!
+          });
+        }
+      });
+    }
+
+    return controls;
   }
 
   private _portTypeToString(type: PortType): string {

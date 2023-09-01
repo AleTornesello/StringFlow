@@ -1,63 +1,78 @@
 <div
   class="title"
   data-testid="title"
->{{data.label}}</div>
-<div class="flex">
-  <div class="w-6">
-    <div
-      class="input"
-      *ngFor="let input of inputs"
-      [attr.data-testid]="'input-'+input.id"
-    >
+>
+  {{data.label}}
+</div>
+<div class="flex flex-column">
+  <div class="flex">
+    <div class="w-6">
       <div
-        class="input-socket"
-        refComponent
-        [data]="{type: 'socket', side: 'input', key: input.id, nodeId: data.id, payload: input.socket, seed: seed }"
-        [emit]="emit"
-        data-testid="input-socket"
-      ></div>
-      <div
-        class="input-title"
-        data-testid="input-title"
+        class="input"
+        *ngFor="let input of inputs"
+        [attr.data-testid]="'input-'+input.id"
       >
-        <label>{{input.label}}</label>
-        <label
-          *ngIf="input.type"
-          class="input-type"
+        <div
+          class="input-socket"
+          refComponent
+          [data]="{type: 'socket', side: 'input', key: input.id, nodeId: data.id, payload: input.socket, seed: seed }"
+          [emit]="emit"
+          data-testid="input-socket"
+        ></div>
+        <div
+          class="input-title"
+          data-testid="input-title"
         >
-          [{{input.type}}]
-        </label>
+          <label>{{input.label}}</label>
+          <label
+            *ngIf="input.type"
+            class="input-type"
+          >
+            [{{input.type}}]
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="w-6">
+      <div
+        class="output"
+        *ngFor="let output of outputs"
+        [attr.data-testid]="'output-'+output.id"
+      >
+        <div
+          class="output-title"
+          data-testid="output-title"
+        >
+          <label>{{output.label}}</label>
+          <label
+            *ngIf="output.type"
+            class="output-type"
+          >
+            [{{output.type}}]
+          </label>
+        </div>
+        <div
+          class="output-socket"
+          refComponent
+          [data]="{type: 'socket', side: 'output', key: output.id, nodeId: data.id, payload: output.socket, seed: seed }"
+          [emit]="emit"
+          data-testid="output-socket"
+        ></div>
       </div>
     </div>
   </div>
-  <div class="w-6">
+  <div class="flex flex-column gap-1">
     <div
-      class="output"
-      *ngFor="let output of outputs"
-      [attr.data-testid]="'output-'+output.id"
-    >
-      <div
-        class="output-title"
-        data-testid="output-title"
-      >
-        <label>{{output.label}}</label>
-        <label
-          *ngIf="output.type"
-          class="output-type"
-        >
-          [{{output.type}}]
-        </label>
-      </div>
-      <div
-        class="output-socket"
-        refComponent
-        [data]="{type: 'socket', side: 'output', key: output.id, nodeId: data.id, payload: output.socket, seed: seed }"
-        [emit]="emit"
-        data-testid="output-socket"
-      ></div>
-    </div>
+      *ngFor="let control of controls"
+      class="input-control"
+      refComponent
+      [data]="{type: 'control', payload: control.control }"
+      [emit]="emit"
+      data-testid="input-control"
+    ></div>
   </div>
 </div>
+
 <!--<div-->
 <!--  class="output"-->
 <!--  *ngFor="let output of data.outputs"-->

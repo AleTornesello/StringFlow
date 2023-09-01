@@ -1,5 +1,6 @@
 import {ClassicPreset} from "rete";
 import {NodeGenerator} from "../../models/node/node-generation";
+import {PortType, TypedOutput} from "../../utils/editor/ports";
 
 export class TextInputNode extends NodeGenerator {
 
@@ -10,7 +11,7 @@ export class TextInputNode extends NodeGenerator {
       "a",
       new ClassicPreset.InputControl("text", {initial: ""})
     );
-    node.addOutput("a", new ClassicPreset.Output(socket!));
+    node.addOutput("a", new TypedOutput(socket!, PortType.STRING, "Output"));
     return node;
   }
 }

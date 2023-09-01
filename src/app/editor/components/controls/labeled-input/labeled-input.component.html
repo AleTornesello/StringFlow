@@ -1,0 +1,8 @@
+<label class="labeled-input-text__label">{{ data.label }}</label>
+<input
+  class="labeled-input-text"
+  [value]="data.value"
+  [readonly]="data.readonly"
+  [type]="data.type"
+  (input)="onChange($event)"
+/>
