@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, HostBinding, Input, OnChanges} from '@angular/core';
 import {ClassicPreset} from "rete";
-import {PortType, TypedInput, TypedOutput} from "../../../shared/utils/editor/ports";
+import {SocketType, TypedInput, TypedOutput} from "../../../shared/utils/editor/ports";
 import {LabeledInputControl} from "../controls/labeled-input/labeled-input.component";
 
 interface PortInfo {
@@ -51,8 +51,8 @@ export class NodeComponent implements OnChanges {
             id: this.data!.inputs[key]!.id,
             label: this.data!.inputs[key]!.label ?? '',
             socket: this.data!.inputs[key]!.socket,
-            type: this.data!.inputs[key] instanceof TypedOutput
-              ? this._portTypeToString((this.data!.inputs[key]! as TypedInput<any>).type)
+            type: this.data!.inputs[key] instanceof TypedInput
+              ? this._portTypeToString((this.data!.inputs[key]! as TypedInput).socket.type)
               : undefined
           });
         }
@@ -73,7 +73,7 @@ export class NodeComponent implements OnChanges {
             label: this.data!.outputs[key]!.label ?? '',
             socket: this.data!.outputs[key]!.socket,
             type: this.data!.outputs[key] instanceof TypedOutput
-              ? this._portTypeToString((this.data!.outputs[key]! as TypedOutput<any>).type)
+              ? this._portTypeToString((this.data!.outputs[key]! as TypedOutput).socket.type)
               : undefined
           });
         }
@@ -102,15 +102,15 @@ export class NodeComponent implements OnChanges {
     return controls;
   }
 
-  private _portTypeToString(type: PortType): string {
+  private _portTypeToString(type: SocketType): string {
     switch (type) {
-      case PortType.ANY:
+      case SocketType.ANY:
         return 'Any';
-      case PortType.STRING:
+      case SocketType.STRING:
         return 'Text';
-      case PortType.NUMBER:
+      case SocketType.NUMBER:
         return 'Number';
-      case PortType.BOOLEAN:
+      case SocketType.BOOLEAN:
         return 'Boolean';
     }
   }

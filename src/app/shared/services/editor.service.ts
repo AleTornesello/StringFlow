@@ -6,19 +6,13 @@ import {addCustomBackground} from "../utils/editor/custom-background";
 import {AngularArea2D, AngularPlugin, ControlComponent, Presets} from "rete-angular-plugin/16";
 import {Subject} from "rxjs";
 import {NodeComponent} from "../../editor/components/node/node.component";
-import {PortType, TypedOutput} from "../utils/editor/ports";
+import {getConnectionSockets, SocketType, TypedInput, TypedOutput, TypedSocket} from "../utils/editor/ports";
 import {SocketComponent} from "../../editor/components/socket/socket.component";
 import {
   LabeledInputComponent,
   LabeledInputControl
 } from "../../editor/components/controls/labeled-input/labeled-input.component";
-
-type Schemes = GetSchemes<
-  ClassicPreset.Node,
-  ClassicPreset.Connection<ClassicPreset.Node, ClassicPreset.Node>
->;
-
-type AreaExtra = AngularArea2D<Schemes>;
+import {AreaExtra, Schemes} from "../utils/editor/types";
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +75,21 @@ export class EditorService {
     this._area.use(this._connection);
     this._area.use(this._render);
 
+    this._editor.addPipe((context) => {
+      if (context.type === "connectioncreate") {
+        const { source, target } = getConnectionSockets(this._editor!, context.data);
+
+        if (!source || !target) {
+          return;
+        }
+
+        if(source instanceof TypedSocket && !source.isCompatibleWith(target)) {
+          return;
+        }
+      }
+      return context;
+    });
+
     addCustomBackground(this._area);
 
     AreaExtensions.simpleNodesOrder(this._area);
@@ -97,7 +106,8 @@ export class EditorService {
       "b",
       new LabeledInputControl("text", "Input", {initial: "hello"})
     );
-    a.addOutput("a", new TypedOutput(this._socket, PortType.STRING, "Output"));
+    const output = new TypedOutput(TypedSocket.fromSocket(this._socket, SocketType.STRING), "Output")
+    a.addOutput(output.id, output);
     await this._editor.addNode(a);
 
     const b = new ClassicPreset.Node("B");
@@ -105,12 +115,13 @@ export class EditorService {
       "b",
       new ClassicPreset.InputControl("text", {initial: "hello"})
     );
-    b.addInput("b", new ClassicPreset.Input(this._socket, "Input"));
+    const input = new TypedInput(TypedSocket.fromSocket(this._socket, SocketType.STRING), "Input")
+    b.addInput(input.id, input);
     await this._editor.addNode(b);
 
     await this._area.translate(b.id, {x: 320, y: 0});
 
-    await this._editor.addConnection(new ClassicPreset.Connection(a, "a", b, "b"));
+    // await this._editor.addConnection(new ClassicPreset.Connection(a, output.id, b, input.id));
 
 
 
