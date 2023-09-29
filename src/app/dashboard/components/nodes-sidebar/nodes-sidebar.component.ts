@@ -43,7 +43,13 @@ export class NodesSidebarComponent {
     this.open = !this.open;
   }
 
-  public onSelectNode(generator: NodeGenerator) {
-    this._editorService.addNode(generator.generate(this._editorService.socket));
+  public async onSelectNode(generator: NodeGenerator) {
+    await this._editorService.addNode(
+      generator.generate(
+        this._editorService.socket,
+        this._editorService.change,
+        this._editorService.update
+      )
+    );
   }
 }

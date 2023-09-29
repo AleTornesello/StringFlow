@@ -7,6 +7,8 @@ import { SocketComponent } from './components/socket/socket.component';
 import { LabeledInputComponent } from './components/controls/labeled-input/labeled-input.component';
 import {InputTextModule} from "primeng/inputtext";
 import {FormsModule} from "@angular/forms";
+import { DoubleButtonsComponent } from './components/controls/double-buttons/double-buttons.component';
+import {ButtonModule} from "primeng/button";
 
 
 
@@ -15,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     EditorComponent,
     NodeComponent,
     SocketComponent,
-    LabeledInputComponent
+    LabeledInputComponent,
+    DoubleButtonsComponent
   ],
   exports: [
     EditorComponent
@@ -24,7 +27,8 @@ import {FormsModule} from "@angular/forms";
     CommonModule,
     ReteModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    ButtonModule
   ]
 })
 export class EditorModule { }

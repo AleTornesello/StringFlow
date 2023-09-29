@@ -6,6 +6,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {NodeGenerator} from "../models/node/node-generation";
 import {ConcatTextNode} from "../nodes/text/concat";
 import {ForkNode} from "../nodes/flow/fork";
+import {TextOutputNode} from "../nodes/generic/text-output";
 
 export interface NodesGroup {
   name: string;
@@ -23,7 +24,7 @@ export class NodeService {
 
   constructor(private _editorService: EditorService) {
     this._nodesGroups = [];
-    this.$afterInit = new Subject<void>();
+    this.$afterInit = new Subject();
 
     this._initGroups();
 
@@ -45,9 +46,10 @@ export class NodeService {
 
     this._nodesGroups = [
       {
-        name: "Generic",
+        name: "I/O",
         nodes: [
-          new TextInputNode()
+          new TextInputNode(),
+          new TextOutputNode()
         ]
       },
       {

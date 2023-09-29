@@ -1,0 +1,20 @@
+<div class="flex justify-content-between">
+  <div>
+    <button
+      *ngIf="isLeftButtonVisible"
+      pButton
+      type="button"
+      [label]="leftLabel"
+      (click)="onClickLeft()"
+    ></button>
+  </div>
+  <div>
+    <button
+      *ngIf="isRightButtonVisible"
+      pButton
+      type="button"
+      [label]="rightLabel"
+      (click)="onClickRight()"
+    ></button>
+  </div>
+</div>
